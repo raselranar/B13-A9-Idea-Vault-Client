@@ -23,7 +23,6 @@ const LoginPage = () => {
 
     // Convert FormData to plain object
     const userData = Object.fromEntries(formData);
-    console.log(userData);
 
     const { data, error } = await authClient.signUp.email({
       ...userData,

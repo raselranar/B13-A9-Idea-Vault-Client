@@ -12,7 +12,6 @@ const GoogleSignInButton = () => {
       provider: "google",
       disableRedirect: true,
     });
-    console.log(data);
     if (!data) return toast.danger("Login Failed");
     toast.success("Login Successful");
     setTimeout(() => {
