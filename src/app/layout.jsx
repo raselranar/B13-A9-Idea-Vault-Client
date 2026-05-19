@@ -2,6 +2,7 @@ import { Cabin } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/layout/NavBar";
 import Footer from "@/components/layout/Footer";
+import { Toast } from "@heroui/react";
 
 const cabin = Cabin({
   variable: "--font-cabin",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
         <NavBar />
         <main>{children}</main>
         <Footer />
+        <Toast.Provider placement="top" />
       </body>
     </html>
   );
