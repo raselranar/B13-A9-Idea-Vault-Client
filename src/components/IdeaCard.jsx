@@ -25,12 +25,12 @@ export default function IdeaCard({
   const gradientClass = categoryColors[category] || "from-gray-500 to-gray-600";
   return (
     <motion.div
-      className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-orange-500 max-w-92 mx-auto"
+      className="group w-full max-w-92 relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-orange-500 mx-auto"
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}>
       <div className={`h-2 bg-linear-to-r ${gradientClass}`}></div>
 
-      <div className="p-6">
+      <div className="p-6 flex flex-col h-full">
         <div className="flex items-center justify-between mb-4">
           <span
             className={`px-4 py-1.5 bg-linear-to-r ${gradientClass} text-white rounded-full text-sm font-bold shadow-md`}>
@@ -64,8 +64,8 @@ export default function IdeaCard({
             <span>{date}</span>
           </div>
         </div>
-
-        <div className="flex items-center justify-between">
+        {/* buttons */}
+        <div className="flex mt-auto items-center justify-between">
           <div className="flex items-center gap-4 text-gray-400">
             <motion.button
               className="flex items-center gap-1 hover:text-pink-500 transition-colors"
