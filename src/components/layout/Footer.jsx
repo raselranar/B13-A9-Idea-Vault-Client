@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FaXTwitter } from "react-icons/fa6";
 import {
   LuFacebook,
   LuGithub,
@@ -50,7 +51,7 @@ const Footer = () => {
               <a
                 href="#"
                 className="p-2.5 bg-slate-800 rounded-lg hover:bg-linear-to-r hover:from-orange-500 hover:to-pink-500 transition-all">
-                <LuInstagram className="w-5 h-5" />
+                <FaXTwitter className="w-5 h-5" />
               </a>
               <a
                 href="#"

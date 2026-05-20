@@ -22,6 +22,19 @@ const categories = [
 ];
 
 export default function AddIdeaPage() {
+<<<<<<< HEAD
+=======
+  // add idea handler
+  const handleAddIdea = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const userData = Object.fromEntries(formData.entries());
+    console.log("Submitted Idea:", userData);
+    // Here you would typically gather form data and send it to your server
+    alert("Idea submitted successfully!");
+  };
+
+>>>>>>> b440c1c (add protect route in navbar)
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,10 +50,19 @@ export default function AddIdeaPage() {
 
         {/* Form Card */}
         <div className="bg-white rounded-2xl shadow-2xl p-8 border-2 border-orange-100">
+<<<<<<< HEAD
           <Form className="space-y-6 flex flex-col">
             {/* Idea Title */}
             <TextField isRequired>
               <Label htmlFor="IdeaTitle">Idea Title</Label>
+=======
+          <Form className="space-y-6 flex flex-col" onSubmit={handleAddIdea}>
+            {/* Idea Title */}
+            <TextField isRequired>
+              <Label className="text-base" htmlFor="IdeaTitle">
+                Idea Title
+              </Label>
+>>>>>>> b440c1c (add protect route in navbar)
               <Input
                 id="IdeaTitle"
                 placeholder="e.g., AI-Powered Personal Finance Assistant"
@@ -51,7 +73,13 @@ export default function AddIdeaPage() {
 
             {/* Short Description */}
             <TextField isRequired>
+<<<<<<< HEAD
               <Label htmlFor="ShortDescription">Short Description</Label>
+=======
+              <Label className="text-base" htmlFor="ShortDescription">
+                Short Description
+              </Label>
+>>>>>>> b440c1c (add protect route in navbar)
 
               <TextArea
                 required={true}
@@ -66,7 +94,13 @@ export default function AddIdeaPage() {
             </TextField>
             {/* Detailed Description */}
             <TextField isRequired>
+<<<<<<< HEAD
               <Label htmlFor="DetailedDescription">Detailed Description</Label>
+=======
+              <Label className="text-base" htmlFor="DetailedDescription">
+                Detailed Description
+              </Label>
+>>>>>>> b440c1c (add protect route in navbar)
               <TextArea
                 required={true}
                 id="DetailedDescription"
@@ -102,7 +136,13 @@ export default function AddIdeaPage() {
               </Select>
               {/* Tags */}
               <div className="flex flex-col gap-2">
+<<<<<<< HEAD
                 <Label htmlFor="tags">Tags</Label>
+=======
+                <Label className="text-base" htmlFor="tags">
+                  Tags
+                </Label>
+>>>>>>> b440c1c (add protect route in navbar)
                 <Input
                   id="tags"
                   placeholder="e.g., mobile, AI, SaaS"
@@ -114,7 +154,13 @@ export default function AddIdeaPage() {
             </div>
             {/* Image URL */}
             <TextField isRequired>
+<<<<<<< HEAD
               <Label htmlFor="ImageURL">Image URL</Label>
+=======
+              <Label className="text-base" htmlFor="ImageURL">
+                Image URL
+              </Label>
+>>>>>>> b440c1c (add protect route in navbar)
               <Input
                 required={true}
                 id="ImageURL"
@@ -127,7 +173,13 @@ export default function AddIdeaPage() {
             {/* Budget + Target Audience */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
+<<<<<<< HEAD
                 <Label htmlFor="EstimatedBudget">Estimated Budget</Label>
+=======
+                <Label className="text-base" htmlFor="EstimatedBudget">
+                  Estimated Budget
+                </Label>
+>>>>>>> b440c1c (add protect route in navbar)
                 <Input
                   id="EstimatedBudget"
                   placeholder="e.g., $50,000 - $100,000"
@@ -136,7 +188,13 @@ export default function AddIdeaPage() {
                 />
               </div>
               <TextField isRequired>
+<<<<<<< HEAD
                 <Label htmlFor="TargetAudience">Target Audience</Label>
+=======
+                <Label className="text-base" htmlFor="TargetAudience">
+                  Target Audience
+                </Label>
+>>>>>>> b440c1c (add protect route in navbar)
                 <Input
                   id="TargetAudience"
                   placeholder="e.g., Young professionals, Students"
@@ -148,7 +206,13 @@ export default function AddIdeaPage() {
 
             {/* Problem Statement */}
             <TextField isRequired>
+<<<<<<< HEAD
               <Label htmlFor="ProblemStatement">Problem Statement</Label>
+=======
+              <Label className="text-base" htmlFor="ProblemStatement">
+                Problem Statement
+              </Label>
+>>>>>>> b440c1c (add protect route in navbar)
               <TextArea
                 label="Problem Statement"
                 placeholder="What problem does your idea solve? Who faces this problem?"
@@ -159,7 +223,13 @@ export default function AddIdeaPage() {
             </TextField>
             {/* Proposed Solution */}
             <TextField isRequired>
+<<<<<<< HEAD
               <Label htmlFor="ProposedSolution">Proposed Solution</Label>
+=======
+              <Label className="text-base" htmlFor="ProposedSolution">
+                Proposed Solution
+              </Label>
+>>>>>>> b440c1c (add protect route in navbar)
               <TextArea
                 label="Proposed Solution"
                 placeholder="How does your idea solve the problem? What makes it unique?"

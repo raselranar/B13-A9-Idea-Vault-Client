@@ -1,3 +1,4 @@
+import { Button, TextArea } from "@heroui/react";
 import {
   Calendar,
   User,
@@ -17,6 +18,8 @@ const fetchIdea = async (id) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`);
   return await res.json();
 };
+
+const comments = [];
 
 export default async function IdeaDetails({ params }) {
   const { id } = await params;
@@ -70,30 +73,6 @@ export default async function IdeaDetails({ params }) {
             <MessageCircle className="w-5 h-5" />
             <span>{ideaData?.commentsCount} comments</span>
           </div>
-        </div>
-
-        {/* Action  */}
-        <div
-          className="flex flex-wrap gap-3 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}>
-          <button className="px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-full hover:shadow-xl transition-all flex items-center gap-2">
-            <Heart className="w-5 h-5" />
-            Like Idea
-          </button>
-          <button className="px-6 py-3 bg-white border-2 border-gray-300 text-gray-700 font-bold rounded-full hover:border-orange-500 transition-all flex items-center gap-2">
-            <Share2 className="w-5 h-5" />
-            Share
-          </button>
-          <button className="px-6 py-3 bg-orange-500 text-white font-bold rounded-full hover:bg-orange-600 transition-all flex items-center gap-2">
-            <Edit className="w-5 h-5" />
-            Edit
-          </button>
-          <button className="px-6 py-3 bg-red-500 text-white font-bold rounded-full hover:bg-red-600 transition-all flex items-center gap-2">
-            <Trash2 className="w-5 h-5" />
-            Delete
-          </button>
         </div>
 
         {/* Main Content */}
@@ -191,27 +170,27 @@ export default async function IdeaDetails({ params }) {
         </div>
 
         {/* Comments Section */}
-        {/* <div className="bg-white rounded-2xl shadow-xl border-2 border-orange-100 p-8"> */}
-        {/* <h2 className="text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
+        <div className="bg-white rounded-2xl shadow-xl border-2 border-orange-100 p-8">
+          <h2 className="text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
             <MessageCircle className="w-8 h-8 text-orange-500" />
             Comments ({comments.length})
-          </h2> */}
+          </h2>
 
-        {/* Add Comment Form */}
-        {/* <div className="mb-8 bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
-            <textarea
+          {/* Add Comment Form */}
+          <div className="mb-8 bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+            <TextArea
               rows={3}
               className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none mb-3"
               placeholder="Share your thoughts on this idea..."
             />
-            <button className="px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold rounded-full hover:shadow-lg transition-all flex items-center gap-2">
+            <Button className="bg-gradient">
               <Send className="w-5 h-5" />
               Post Comment
-            </button>
-          </div> */}
+            </Button>
+          </div>
 
-        {/* Comments List */}
-        {/* <div className="space-y-6">
+          {/* Comments List */}
+          <div className="space-y-6">
             {comments.map((comment) => (
               <div
                 key={comment.id}
@@ -255,8 +234,8 @@ export default async function IdeaDetails({ params }) {
                 </div>
               </div>
             ))}
-          </div> */}
-        {/* </div> */}
+          </div>
+        </div>
       </div>
     </div>
   );

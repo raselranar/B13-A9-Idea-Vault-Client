@@ -3,7 +3,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { LuZap } from "react-icons/lu";
 import { motion } from "motion/react";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button, Separator } from "@heroui/react";
 const NavBar = () => {
+  const { data: session } = authClient.useSession();
+  console.log(session);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = (
     <>
@@ -13,7 +17,62 @@ const NavBar = () => {
       <li>
         <Link href="/ideas">Ideas</Link>
       </li>
+      {session && (
+        <>
+          <li>
+            <Link href="/add-idea">Add Idea</Link>
+          </li>
+          <li>
+            <Link href="/my-idea">My Ideas</Link>
+          </li>
+          <li>
+            <Link href="/my-interactions">My Interactions</Link>
+          </li>
+        </>
+      )}
     </>
+  );
+
+  // login and logout buttons
+  const LoginButtons = !session ? (
+    <div className="flex items-center gap-4">
+      <div>
+        <Link
+          href="/login"
+          className="px-6 py-2.5 text-white font-semibold border-2 border-white rounded-full hover:bg-white hover:text-orange-500 transition-all">
+          Login
+        </Link>
+      </div>
+      <div>
+        <Link
+          href="/register"
+          className="px-6 py-2.5 bg-white text-orange-500 font-semibold rounded-full hover:bg-yellow-300 hover:text-orange-600 transition-all shadow-lg">
+          Sign Up
+        </Link>
+      </div>
+    </div>
+  ) : (
+    <div className="flex items-center gap-4">
+      {/* User Avatar */}
+      <Avatar>
+        <Avatar.Image
+          alt={session?.user?.name || "User Avatar"}
+          src={session?.user?.image || null}
+        />
+        <Avatar.Fallback className="text-xl">
+          {session?.user?.name.charAt(0)}
+        </Avatar.Fallback>
+      </Avatar>
+      <div className="text-white font-bold">{session?.user?.name}</div>
+
+      <Button
+        variant="outline"
+        size="lg"
+        className="bg-white font-semibold text-orange-500 hover:bg-yellow-300 hover:text-orange-600 transition-all shadow-lg"
+        onClick={() => authClient.signOut()}>
+        Logout
+      </Button>
+    </div>
   );
 
   return (
@@ -70,6 +129,7 @@ const NavBar = () => {
         <ul className="hidden items-center gap-4 md:flex *:px-4 *:py-2 *:text-white *:font-medium *:hover:bg-white/20 *:text-xl *:rounded-lg transition-all">
           {links}
         </ul>
+        <div className="hidden md:flex">{LoginButtons}</div>
       </header>
       {/* small devices nav */}
       {isMenuOpen && (
@@ -77,6 +137,8 @@ const NavBar = () => {
           <ul className="flex flex-col gap-2 p-4 *:px-4 *:py-2 *:text-white *:font-medium *:hover:bg-white/20 *:text-xl *:rounded-lg transition-all">
             {links}
           </ul>
+          <Separator />
+          <div className="px-4 flex my-3">{LoginButtons}</div>
         </div>
       )}
     </nav>
