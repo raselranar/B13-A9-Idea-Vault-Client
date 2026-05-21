@@ -10,13 +10,9 @@ const GoogleSignInButton = () => {
   const handleSignIn = async () => {
     const data = await authClient.signIn.social({
       provider: "google",
-      disableRedirect: true,
     });
     if (!data) return toast.danger("Login Failed");
-    toast.success("Login Successful");
-    setTimeout(() => {
-      router.back();
-    }, 500);
+    console.log(data);
   };
 
   return (

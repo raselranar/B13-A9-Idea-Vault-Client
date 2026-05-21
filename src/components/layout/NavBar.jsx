@@ -4,7 +4,8 @@ import { useState } from "react";
 import { LuZap } from "react-icons/lu";
 import { motion } from "motion/react";
 import { authClient } from "@/lib/auth-client";
-import { Avatar, Button, Separator } from "@heroui/react";
+import { Avatar, Button, Dropdown, Label, Separator } from "@heroui/react";
+import { ChevronDown } from "lucide-react";
 const NavBar = () => {
   const { data: session } = authClient.useSession();
   console.log(session);
@@ -53,25 +54,44 @@ const NavBar = () => {
     </div>
   ) : (
     <div className="flex items-center gap-4">
-      {/* User Avatar */}
-      <Avatar>
-        <Avatar.Image
-          alt={session?.user?.name || "User Avatar"}
-          src={session?.user?.image || null}
-        />
-        <Avatar.Fallback className="text-xl">
-          {session?.user?.name.charAt(0)}
-        </Avatar.Fallback>
-      </Avatar>
-      <div className="text-white font-bold">{session?.user?.name}</div>
+      <Dropdown
+        className="data-[disabled=true]:bg-transparent disabled:border-gray-200"
+        variant="flat">
+        <Button
+          aria-label="Menu"
+          variant="outline"
+          size="lg"
+          className=" border-2 py-5  shadow-lg  hover:text-yellow-200">
+          <Avatar size="sm">
+            <Avatar.Image
+              alt={session?.user?.name || "User Avatar"}
+              src={session?.user?.image || null}
+            />
+            <Avatar.Fallback className="my-4">
+              {session?.user?.name.charAt(0)}
+            </Avatar.Fallback>
+          </Avatar>
+          <div className="text-yellow-500 font-bold">{session?.user?.name}</div>
+          <ChevronDown className="text-white" />
+        </Button>
+        <Dropdown.Popover>
+          <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+            <Dropdown.Item id="new-file" textValue="New file">
+              <Link href="/my-profile">
+                <Label>Update Profile</Label>
+              </Link>
+            </Dropdown.Item>
 
-      <Button
-        variant="outline"
-        size="lg"
-        className="bg-white font-semibold text-orange-500 hover:bg-yellow-300 hover:text-orange-600 transition-all shadow-lg"
-        onClick={() => authClient.signOut()}>
-        Logout
-      </Button>
+            <Dropdown.Item
+              onClick={() => authClient.signOut()}
+              id="delete-file"
+              textValue="Delete file"
+              variant="danger">
+              <Label>Logout</Label>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown.Popover>
+      </Dropdown>
     </div>
   );
 
