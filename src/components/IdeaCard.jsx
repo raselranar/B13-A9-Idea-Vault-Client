@@ -20,7 +20,16 @@ const categoryColors = {
 };
 
 export default function IdeaCard({
-  data: { title, description, category, author, date, trending, _id },
+  data: {
+    title,
+    description,
+    category,
+    author,
+    date,
+    trending,
+    _id,
+    commentsCount,
+  },
 }) {
   const gradientClass = categoryColors[category] || "from-gray-500 to-gray-600";
   return (
@@ -79,7 +88,8 @@ export default function IdeaCard({
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}>
               <MessageCircle className="w-4 h-4" />
-              <span className="text-xs font-medium">12</span>
+              {/* comments */}
+              <span className="text-xs font-medium">{commentsCount}</span>
             </motion.button>
           </div>
 

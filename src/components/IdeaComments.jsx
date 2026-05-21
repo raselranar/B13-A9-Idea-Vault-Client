@@ -42,11 +42,6 @@ const IdeaComments = ({ comments, id }) => {
       });
   };
 
-  // delete comment handler
-  const handleDeleteComment = (commentId) => {
-    // logic to delete comment
-  };
-
   return (
     <div className="bg-white rounded-2xl shadow-xl border-2 border-orange-100 p-8">
       <h2 className="text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
@@ -81,7 +76,7 @@ const IdeaComments = ({ comments, id }) => {
               className="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                  {comment?.user.charAt(0)?.toUpperCase() || "U"}
+                  {comment?.user?.charAt(0)?.toUpperCase() || "U"}
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
@@ -109,6 +104,7 @@ const IdeaComments = ({ comments, id }) => {
                         id={id}
                         commentId={comment?.commentId}
                       />
+                      {/* delete button */}
                       <DeleteCommentModal
                         id={id}
                         commentId={comment?.commentId}

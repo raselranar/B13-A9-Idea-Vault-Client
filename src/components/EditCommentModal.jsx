@@ -9,8 +9,18 @@ import {
   TextArea,
   TextField,
   toast,
+  useDisclosureGroupNavigation,
+  useOverlayState,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 const EditCommentModal = ({ id, commentId }) => {
+  const router = useRouter();
+  // modal state
+  const state = useOverlayState({
+    defaultOpen: false,
+    onOpenChange: (isOpen) => console.log(isOpen),
+  });
+
   // edit comment handler
   const handleEditComment = (e) => {
     e.preventDefault();
@@ -33,6 +43,7 @@ const EditCommentModal = ({ id, commentId }) => {
       .then((response) => response.json())
       .then((data) => {
         toast.success("Comment edited successfully!");
+        state.close();
         // refresh comments
         router.refresh();
       });
@@ -41,11 +52,12 @@ const EditCommentModal = ({ id, commentId }) => {
   return (
     <Modal>
       <Button
+        onClick={state.setOpen}
         variant="secondary"
         className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-semibold hover:bg-orange-600 transition-all flex items-center gap-1">
         Edit Comment
       </Button>
-      <Modal.Backdrop>
+      <Modal.Backdrop isOpen={state.isOpen} onOpenChange={state.setOpen}>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-md">
             <Modal.CloseTrigger />
@@ -61,6 +73,7 @@ const EditCommentModal = ({ id, commentId }) => {
                   className="flex flex-col gap-4">
                   <TextArea
                     rows={3}
+                    required
                     name="editCommentBox"
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none mb-3"
                     placeholder="Share your thoughts on this idea..."
