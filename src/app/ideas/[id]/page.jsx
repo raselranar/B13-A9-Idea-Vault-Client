@@ -1,4 +1,5 @@
-import { Button, TextArea } from "@heroui/react";
+import IdeaComments from "@/components/IdeaComments";
+import { Button, Form, TextArea } from "@heroui/react";
 import {
   Calendar,
   User,
@@ -19,13 +20,11 @@ const fetchIdea = async (id) => {
   return await res.json();
 };
 
-const comments = [];
-
 export default async function IdeaDetails({ params }) {
   const { id } = await params;
   const ideaData = await fetchIdea(id);
 
-  console.log("ideasdata", ideaData);
+  console.log("ideadata", ideaData);
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
       <div
@@ -170,72 +169,7 @@ export default async function IdeaDetails({ params }) {
         </div>
 
         {/* Comments Section */}
-        <div className="bg-white rounded-2xl shadow-xl border-2 border-orange-100 p-8">
-          <h2 className="text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
-            <MessageCircle className="w-8 h-8 text-orange-500" />
-            Comments ({comments.length})
-          </h2>
-
-          {/* Add Comment Form */}
-          <div className="mb-8 bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
-            <TextArea
-              rows={3}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none mb-3"
-              placeholder="Share your thoughts on this idea..."
-            />
-            <Button className="bg-gradient">
-              <Send className="w-5 h-5" />
-              Post Comment
-            </Button>
-          </div>
-
-          {/* Comments List */}
-          <div className="space-y-6">
-            {comments.map((comment) => (
-              <div
-                key={comment.id}
-                className="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                    {comment.authorPhoto}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
-                      <div>
-                        <span className="font-bold text-gray-900">
-                          {comment.author}
-                        </span>
-                        {comment.isOwner && (
-                          <span className="ml-2 px-2 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded">
-                            AUTHOR
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-sm text-gray-500">
-                        {comment.date}
-                      </span>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed mb-3">
-                      {comment.text}
-                    </p>
-                    {comment.isOwner && (
-                      <div className="flex gap-2">
-                        <button className="px-4 py-2 bg-orange-500 text-white rounded-lg text-sm font-semibold hover:bg-orange-600 transition-all flex items-center gap-1">
-                          <Edit className="w-4 h-4" />
-                          Edit
-                        </button>
-                        <button className="px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-semibold hover:bg-red-600 transition-all flex items-center gap-1">
-                          <Trash2 className="w-4 h-4" />
-                          Delete
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <IdeaComments comments={ideaData?.comments} id={ideaData?._id} />
       </div>
     </div>
   );

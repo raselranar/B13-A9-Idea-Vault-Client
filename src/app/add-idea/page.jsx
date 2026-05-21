@@ -168,7 +168,7 @@ export default function AddIdeaPage() {
               </div>
             </div>
             {/* Image URL */}
-            <TextField isRequired name="imageURL">
+            <TextField isRequired name="imageUrl">
               <Label className="text-base" htmlFor="ImageURL">
                 Image URL
               </Label>
