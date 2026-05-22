@@ -8,21 +8,32 @@ import DeleteCommentModal from "./DeleteCommentModal";
 
 const IdeaComments = ({ comments, id }) => {
   const { data: session } = authClient.useSession();
-  console.log(session);
+
   const router = useRouter();
   const ownerCheck = (comment) => {
     return session?.user?.name?.toLowerCase() === comment?.user?.toLowerCase();
   };
   // post comment handler
-  const handlePostComment = (e) => {
+  const handlePostComment = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const commentText = formData.get("commentBox");
     // post to server
+
+    const {
+      data: { token },
+      error,
+    } = await authClient.token();
+    if (error) {
+      console.error("Error fetching token:", error);
+      toast.danger("Error fetching authentication token. Please try again.");
+    }
+
     fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         userId: session?.user?.id || "anonymous",
@@ -38,7 +49,12 @@ const IdeaComments = ({ comments, id }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        toast.success("Comment posted successfully!");
+        console.log(data);
+        if (data.error) {
+          toast.danger(data.error);
+        } else {
+          toast.success("Comment posted successfully!");
+        }
         // refresh comments
         router.refresh();
       });

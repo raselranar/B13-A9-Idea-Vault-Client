@@ -18,18 +18,23 @@ export const metadata = {
 //     });
 
 // fetch my ideas from server
-const fetchMyIdeas = async (name) => {
+const fetchMyIdeas = async (name, token) => {
   console.log(name);
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/my-ideas/?name=${name}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
   );
   return await res.json();
 };
 
 export default async function MyIdeas() {
   const session = await auth.api.getSession({ headers: await headers() });
-  console.log(session);
-  const myIdeas = await fetchMyIdeas(session?.user?.name);
+  const { token } = await auth.api.getToken({ headers: await headers() });
+  const myIdeas = await fetchMyIdeas(session?.user?.name, token);
   console.log(myIdeas);
   return <MyIdeasManager initialIdeas={myIdeas} />;
 }

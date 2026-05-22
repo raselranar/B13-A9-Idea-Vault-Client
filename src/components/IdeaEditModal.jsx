@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Form,
@@ -36,23 +37,27 @@ const IdeaEditModal = ({ idea, onSaved }) => {
     const description = formData.get("description")?.toString().trim();
 
     if (!title || !category || !description) {
-      toast.error("Please fill in all fields before saving.");
+      toast.danger("Please fill in all fields before saving.");
       return;
     }
-
+    // get token
+    const {
+      data: { token },
+    } = await authClient.token();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${idea._id}`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ title, category, description }),
       },
     );
 
     if (!response.ok) {
-      toast.error("Unable to update idea. Try again.");
+      toast.danger("Unable to update idea. Try again.");
       return;
     }
 

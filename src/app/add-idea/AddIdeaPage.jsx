@@ -25,6 +25,7 @@ const categories = [
 
 export default function AddIdeaPage() {
   const { data: session } = authClient.useSession();
+
   // add idea handler
   const handleAddIdea = async (e) => {
     e.preventDefault();
@@ -46,10 +47,20 @@ export default function AddIdeaPage() {
 
     console.log("Submitted Idea:", userData);
     // send data to server
+    const {
+      data: { token },
+      error,
+    } = await authClient.token();
+    if (error) {
+      console.error("Error fetching token:", error);
+      toast.danger("Error fetching authentication token. Please try again.");
+    }
+    console.log(token);
     fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userData),
     })

@@ -13,8 +13,14 @@ export const metadata = {
 
 // fetch commented ideas from server
 const fetchCommentedIdeas = async (id) => {
+  const { token } = await auth.api.getToken({ headers: await headers() });
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/commented-ideas/?id=${id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
   );
   return await res.json();
 };
@@ -22,7 +28,6 @@ const fetchCommentedIdeas = async (id) => {
 export default async function MyInteractions() {
   const session = await auth.api.getSession({ headers: await headers() });
   const interactions = await fetchCommentedIdeas(session?.user?.id);
-  console.log(interactions);
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,4 +1,6 @@
 import IdeaComments from "@/components/IdeaComments";
+import { auth } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
 import { Button, Form, TextArea } from "@heroui/react";
 import {
   Calendar,
@@ -13,16 +15,23 @@ import {
   Trash2,
   Send,
 } from "lucide-react";
+import { headers } from "next/headers";
 import Image from "next/image";
 
-const fetchIdea = async (id) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`);
+const fetchIdea = async (id, token) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   return await res.json();
 };
 // dynamic metadata for idea details page by params
 export const generateMetadata = async ({ params }) => {
+  const { token } = await auth.api.getToken({ headers: await headers() });
   const { id } = await params;
-  const ideaData = await fetchIdea(id);
+  console.log(token);
+  const ideaData = await fetchIdea(id, token);
   return {
     title: `${ideaData?.title} - Idea Details`,
     description: ideaData?.shortDescription,
@@ -30,8 +39,10 @@ export const generateMetadata = async ({ params }) => {
 };
 
 export default async function IdeaDetails({ params }) {
+  const { token } = await auth.api.getToken({ headers: await headers() });
+
   const { id } = await params;
-  const ideaData = await fetchIdea(id);
+  const ideaData = await fetchIdea(id, token);
 
   console.log("ideadata", ideaData);
   return (

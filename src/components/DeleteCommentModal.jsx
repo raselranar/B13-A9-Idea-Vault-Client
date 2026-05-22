@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Form,
@@ -17,17 +18,24 @@ const DeleteCommentModal = ({ id, commentId }) => {
     onOpenChange: (isOpen) => console.log(isOpen),
   });
 
-  const handleDeleteComment = () => {
+  const handleDeleteComment = async () => {
+    const {
+      data: { token },
+    } = await authClient.token();
     fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}/comments/${commentId}`,
       {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       },
     )
       .then((response) => response.json())
       .then((data) => {
-        toast.success("Comment deleted successfully!");
+        if (data?.error) return toast.danger(data.error);
         state.close();
+        toast.success("Comment deleted successfully!");
 
         router.refresh();
       });

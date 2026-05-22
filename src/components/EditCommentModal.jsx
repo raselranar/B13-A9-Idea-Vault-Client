@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Form,
@@ -22,18 +23,21 @@ const EditCommentModal = ({ id, commentId }) => {
   });
 
   // edit comment handler
-  const handleEditComment = (e) => {
+  const handleEditComment = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const commentText = formData.get("editCommentBox");
-    console.log(commentId);
     // put to server
+    const {
+      data: { token },
+    } = await authClient.token();
     fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}/comments/${commentId}`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           text: commentText,
@@ -42,8 +46,9 @@ const EditCommentModal = ({ id, commentId }) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        toast.success("Comment edited successfully!");
+        if (data?.error) return toast.danger(data.error);
         state.close();
+        toast.success("Comment edited successfully!");
         // refresh comments
         router.refresh();
       });

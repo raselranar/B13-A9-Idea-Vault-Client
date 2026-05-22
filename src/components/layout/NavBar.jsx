@@ -107,7 +107,7 @@ const NavBar = () => {
       <header className="flex h-16 items-center justify-between px-6 container mx-auto">
         <div className="flex items-center gap-4">
           <button
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu">
             <span className="sr-only">Menu</span>
@@ -153,7 +153,7 @@ const NavBar = () => {
             </div>
           </Link>
         </div>
-        <ul className="hidden items-center gap-4 md:flex  transition-all">
+        <ul className="hidden items-center gap-2 lg:flex  transition-all">
           {links}
         </ul>
         <div className="flex items-center gap-4">

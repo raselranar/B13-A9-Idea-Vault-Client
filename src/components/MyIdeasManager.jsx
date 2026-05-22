@@ -49,7 +49,7 @@ export default function MyIdeasManager({ initialIdeas }) {
         </div>
 
         <div className="space-y-6">
-          {ideas.map((idea) => (
+          {ideas?.map((idea) => (
             <div
               key={idea._id}
               className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-6 border-2 border-gray-100 dark:border-slate-700 hover:border-orange-500 transition-all">

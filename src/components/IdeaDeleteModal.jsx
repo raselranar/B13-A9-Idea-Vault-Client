@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Button, Modal, Surface, toast, useOverlayState } from "@heroui/react";
 import { Trash2 } from "lucide-react";
 
@@ -6,15 +7,22 @@ const IdeaDeleteModal = ({ idea, onDeleted }) => {
   const state = useOverlayState({ defaultOpen: false });
 
   const handleDeleteIdea = async () => {
+    // get token
+    const {
+      data: { token },
+    } = await authClient.token();
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${idea._id}`,
       {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       },
     );
 
     if (!res.ok) {
-      toast.error("Unable to delete idea. Try again.");
+      toast.danger("Unable to delete idea. Try again.");
       return;
     }
 
