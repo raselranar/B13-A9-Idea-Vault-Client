@@ -17,7 +17,7 @@ const IdeasPage = async () => {
   return (
     <section className="container mx-auto py-12 px-4 mt-2">
       <header>
-        <h1 className="text-4xl text-center">All Ideas</h1>
+        <h1 className="text-5xl text-center">All Ideas</h1>
         <p className="text-gray-500 text-xl text-center">
           Browse through thousands of innovative startup ideas
         </p>
@@ -29,7 +29,7 @@ const IdeasPage = async () => {
           Showing <span className="font-bold">{allIdeas.length}</span> ideas
         </div>
         {/* cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4 mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4 mt-8">
           {allIdeas.map((idea) => (
             <IdeaCard key={idea._id} data={idea} />
           ))}

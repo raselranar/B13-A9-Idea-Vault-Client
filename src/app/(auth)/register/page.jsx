@@ -37,7 +37,7 @@ const RegisterPage = () => {
   return (
     <div className="bg-background flex items-center justify-center py-12">
       <div className="">
-        <h1 className="text-4xl font-black text-center">Join IdeaVault</h1>
+        <h1 className="text-5xl font-black text-center">Join IdeaVault</h1>
         <p className="text-center text-gray-500 text-lg">
           Start sharing your innovative ideas today
         </p>

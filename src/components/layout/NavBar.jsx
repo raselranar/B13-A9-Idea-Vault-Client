@@ -144,7 +144,7 @@ const NavBar = () => {
             </div>
           </Link>
         </div>
-        <ul className="hidden items-center gap-4 md:flex *:px-4 *:py-2 *:text-white *:font-medium *:hover:bg-white/20 *:text-xl *:rounded-lg transition-all">
+        <ul className="hidden items-center gap-4 md:flex *:px-4 *:py-2 *:text-white *:font-medium *:hover:bg-white/20 *:text-lg *:rounded-lg transition-all">
           {links}
         </ul>
         <div className="hidden md:flex">{LoginButtons}</div>
@@ -152,7 +152,7 @@ const NavBar = () => {
       {/* small devices nav */}
       {isMenuOpen && (
         <div className="border-t border-separator md:hidden">
-          <ul className="flex flex-col gap-2 p-4 *:px-4 *:py-2 *:text-white *:font-medium *:hover:bg-white/20 *:text-xl *:rounded-lg transition-all">
+          <ul className="flex flex-col gap-2 p-4 *:px-4 *:py-2 *:text-white *:font-medium *:hover:bg-white/20 *:text-lg *:rounded-lg transition-all">
             {links}
           </ul>
           <Separator />
