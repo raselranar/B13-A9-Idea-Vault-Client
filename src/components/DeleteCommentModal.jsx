@@ -1,9 +1,22 @@
 "use client";
-import { Button, Form, Modal, Surface, toast } from "@heroui/react";
+import {
+  Button,
+  Form,
+  Modal,
+  Surface,
+  toast,
+  useOverlayState,
+} from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 const DeleteCommentModal = ({ id, commentId }) => {
   const router = useRouter();
+  // modal state
+  const state = useOverlayState({
+    defaultOpen: false,
+    onOpenChange: (isOpen) => console.log(isOpen),
+  });
+
   const handleDeleteComment = () => {
     fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}/comments/${commentId}`,
@@ -14,27 +27,30 @@ const DeleteCommentModal = ({ id, commentId }) => {
       .then((response) => response.json())
       .then((data) => {
         toast.success("Comment deleted successfully!");
+        state.close();
+
         router.refresh();
       });
   };
   return (
     <Modal>
       <Button
+        onClick={state.setOpen}
         variant="secondary"
         className="px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-semibold hover:bg-red-600 transition-all flex items-center gap-1">
         Delete
       </Button>
-      <Modal.Backdrop>
+      <Modal.Backdrop isOpen={state.isOpen} onOpenChange={state.setOpen}>
         <Modal.Container placement="auto">
-          <Modal.Dialog className="sm:max-w-md">
+          <Modal.Dialog className="sm:max-w-md dark:bg-slate-900">
             <Modal.CloseTrigger />
             <Modal.Header>
-              <Modal.Heading className="text-center text-xl">
+              <Modal.Heading className="text-center text-xl dark:text-slate-50">
                 Delete Comment
               </Modal.Heading>
             </Modal.Header>
             <Modal.Body className="p-6">
-              <p className="text-lg text-gray-700">
+              <p className="text-lg text-gray-700 dark:text-slate-300">
                 Permanently delete this comment?
               </p>
             </Modal.Body>

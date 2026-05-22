@@ -17,15 +17,15 @@ const IdeasPage = async () => {
   return (
     <section className="container mx-auto py-12 px-4 mt-2">
       <header>
-        <h1 className="text-5xl text-center">All Ideas</h1>
-        <p className="text-gray-500 text-xl text-center">
+        <h1 className="text-5xl dark:text-white text-center">All Ideas</h1>
+        <p className="text-gray-500 dark:text-slate-50 text-xl text-center">
           Browse through thousands of innovative startup ideas
         </p>
       </header>
 
       {/* card container */}
       <section className="w-fit mx-auto">
-        <div className="text-gray-500">
+        <div className="text-gray-500 dark:text-slate-50">
           Showing <span className="font-bold">{allIdeas.length}</span> ideas
         </div>
         {/* cards */}

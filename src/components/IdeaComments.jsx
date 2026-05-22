@@ -8,6 +8,7 @@ import DeleteCommentModal from "./DeleteCommentModal";
 
 const IdeaComments = ({ comments, id }) => {
   const { data: session } = authClient.useSession();
+  console.log(session);
   const router = useRouter();
   const ownerCheck = (comment) => {
     return session?.user?.name?.toLowerCase() === comment?.user?.toLowerCase();
@@ -24,6 +25,7 @@ const IdeaComments = ({ comments, id }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        userId: session?.user?.id || "anonymous",
         user: session?.user?.name || "Anonymous User",
         text: commentText,
         date: new Date().toLocaleDateString("en-US", {
@@ -43,20 +45,20 @@ const IdeaComments = ({ comments, id }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border-2 border-orange-100 p-8">
-      <h2 className="text-3xl font-black text-gray-900 mb-6 flex items-center gap-3">
+    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-orange-100 dark:border-slate-700 p-8">
+      <h2 className="text-3xl font-black text-gray-900 dark:text-slate-50 mb-6 flex items-center gap-3">
         <MessageCircle className="w-8 h-8 text-orange-500" />
-        Comments ({comments?.length})
+        Comments ({comments?.length || 0})
       </h2>
 
       {/* Add Comment Form */}
       <Form
         onSubmit={handlePostComment}
-        className="mb-8 bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+        className="mb-8 bg-gray-50 dark:bg-slate-800 rounded-xl p-6 border-2 border-gray-200 dark:border-slate-700">
         <TextArea
           rows={3}
           name="commentBox"
-          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none mb-3"
+          className="w-full px-4 py-3 border-2 border-gray-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none mb-3"
           placeholder="Share your thoughts on this idea..."
         />
         <Button type="submit" className="bg-gradient">
@@ -73,7 +75,7 @@ const IdeaComments = ({ comments, id }) => {
           return (
             <div
               key={i}
-              className="bg-gray-50 rounded-xl p-6 border-2 border-gray-200">
+              className="bg-gray-50 dark:bg-slate-800 rounded-xl p-6 border-2 border-gray-200 dark:border-slate-700">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
                   {comment?.user?.charAt(0)?.toUpperCase() || "U"}
@@ -81,7 +83,7 @@ const IdeaComments = ({ comments, id }) => {
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <div>
-                      <span className="font-bold text-gray-900">
+                      <span className="font-bold text-gray-900 dark:text-slate-50">
                         {comment?.user || "Unknown User"}
                       </span>
                       {/* {isOwner && (
@@ -90,11 +92,11 @@ const IdeaComments = ({ comments, id }) => {
                         </span>
                       )} */}
                     </div>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-gray-500 dark:text-slate-300">
                       {comment?.date}
                     </span>
                   </div>
-                  <p className="text-gray-700 leading-relaxed mb-3">
+                  <p className="text-gray-700 dark:text-slate-300 leading-relaxed mb-3">
                     {comment?.text}
                   </p>
                   {isOwner && (

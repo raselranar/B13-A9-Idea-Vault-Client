@@ -12,7 +12,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="relative bg-slate-900 text-white overflow-hidden">
+    <footer className="relative bg-slate-900 dark:bg-slate-950 text-white overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -186,12 +186,12 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-slate-300">
               &copy; 2026{" "}
               <span className="text-orange-400 font-bold">IdeaVault</span>. All
               rights reserved.
             </p>
-            <div className="flex gap-6 text-xs text-gray-500">
+            <div className="flex gap-6 text-xs text-gray-500 dark:text-slate-300">
               <a href="#" className="hover:text-orange-400 transition-colors">
                 Terms of Service
               </a>

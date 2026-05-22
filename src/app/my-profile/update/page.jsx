@@ -39,7 +39,7 @@ export default function UpdateProfilePage() {
   };
 
   return (
-    <div className="flex justify-center py-12 bg-background px-4">
+    <div className="flex justify-center py-12 bg-background dark:bg-slate-800 px-4">
       <Card className="flex  w-96 flex-col gap-4 p-0 rounded-3xl px-4 py-6 shadow-xl">
         <div className="">
           <div className="w-full flex justify-center">
@@ -86,7 +86,9 @@ export default function UpdateProfilePage() {
               }}>
               <Label className="flex gap-1 items-center">
                 Photo URL
-                <span className="text-gray-500 text-xs">(optional)</span>
+                <span className="text-gray-500 dark:text-slate-300 text-xs">
+                  (optional)
+                </span>
               </Label>
               <Input
                 className="py-3"

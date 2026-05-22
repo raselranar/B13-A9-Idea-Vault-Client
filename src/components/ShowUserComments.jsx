@@ -10,17 +10,16 @@ const ShowUserComments = async ({ comments }) => {
   );
   console.log(comments);
   return (
-    <ListBox
-      aria-label="Users"
-      className="flex gap-2 shadow-sm rounded-xl"
-      selectionMode="single">
-      {comments?.map((comment) => (
-        <ListBox.Item key={comment.id} id={comment.id} textValue={comment.user}>
-          <Label>{comment?.text}</Label>
-          <ListBox.ItemIndicator />
-        </ListBox.Item>
+    <div className="flex flex-col gap-2 ">
+      {comments?.map((comment, i) => (
+        <div
+          key={comment.id || i}
+          id={comment.id || i}
+          className="px-4 py-2 shadow-sm dark:shadow-none rounded-xl bg-gray-100 dark:bg-slate-700 dark:text-white">
+          {comment?.text}
+        </div>
       ))}
-    </ListBox>
+    </div>
   );
 };
 

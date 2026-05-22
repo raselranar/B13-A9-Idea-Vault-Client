@@ -54,14 +54,14 @@ const StatsSection = () => {
                 />
               </motion.div>
               <motion.div
-                className="text-5xl font-black text-black/80 mb-2"
+                className="text-5xl font-black text-black/80 dark:text-slate-300 mb-2"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}>
                 {stat.value}
               </motion.div>
-              <div className="text-lg text-gray-600 font-medium">
+              <div className="text-lg text-gray-600 dark:text-slate-300 font-medium">
                 {stat.label}
               </div>
             </motion.div>

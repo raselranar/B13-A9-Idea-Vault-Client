@@ -36,16 +36,16 @@ const IdeaDeleteModal = ({ idea, onDeleted }) => {
 
       <Modal.Backdrop isOpen={state.isOpen} onOpenChange={state.setOpen}>
         <Modal.Container placement="auto">
-          <Modal.Dialog className="sm:max-w-md">
+          <Modal.Dialog className="sm:max-w-md dark:bg-slate-900">
             <Modal.CloseTrigger />
             <Modal.Header>
-              <Modal.Heading className="text-center text-xl font-bold">
+              <Modal.Heading className="text-center text-xl font-bold dark:text-slate-50">
                 Delete Idea
               </Modal.Heading>
             </Modal.Header>
             <Modal.Body className="p-6">
-              <Surface variant="default" className="p-4 rounded-3xl shadow-sm">
-                <p className="text-gray-700 text-base">
+              <Surface variant="default" className="bg-transparent">
+                <p className="text-gray-700 dark:text-slate-300 text-base">
                   Are you sure you want to permanently delete this idea?
                 </p>
               </Surface>

@@ -1,12 +1,7 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
-/*
- * HeroUI Theme Customization
- * Add this to your global.css after importing @heroui/styles
- * Only includes variables users need to customize
- * @see https://heroui.com/docs/react/getting-started/theming
- */
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --background-image-gradient: linear-gradient(
@@ -20,6 +15,15 @@
 @layer base {
   html {
     font-size: 16px;
+  }
+  html.dark body {
+    @apply bg-slate-900 text-slate-50;
+  }
+  html.dark footer {
+    @apply bg-slate-950;
+  }
+  footer {
+    @apply bg-slate-900;
   }
   h1 {
     font-size: text-5xl;
@@ -61,8 +65,4 @@
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
-}
-/* global.css */
-.heroui-input-wrapper {
-  background-color: #f3f4f6 !important;
 }

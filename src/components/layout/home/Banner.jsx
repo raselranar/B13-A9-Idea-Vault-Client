@@ -85,7 +85,7 @@ export default function Banner() {
               exit={{ opacity: 0, x: 50 }}
               transition={{ duration: 0.5 }}>
               <motion.div
-                className="inline-block px-4 py-2 bg-orange-500/20 border border-orange-500/30 rounded-full"
+                className="inline-block px-4 py-2 bg-orange-500/20 border dark:border-slate-700/60  border-orange-500/30 rounded-full"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2 }}>

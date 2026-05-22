@@ -4,13 +4,26 @@ import {
   Form,
   Input,
   Label,
+  ListBox,
   Modal,
   Surface,
   TextArea,
   toast,
   useOverlayState,
+  Select,
 } from "@heroui/react";
 import { Edit } from "lucide-react";
+
+const categories = [
+  "Tech",
+  "Health",
+  "AI",
+  "Education",
+  "E-commerce",
+  "Environment",
+  "Finance",
+  "Social",
+];
 
 const IdeaEditModal = ({ idea, onSaved }) => {
   const state = useOverlayState({ defaultOpen: false });
@@ -71,7 +84,9 @@ const IdeaEditModal = ({ idea, onSaved }) => {
               </Modal.Heading>
             </Modal.Header>
             <Modal.Body className="p-6">
-              <Surface variant="default" className="p-4 rounded-3xl shadow-sm">
+              <Surface
+                variant="default"
+                className="p-4 rounded-3xl shadow-sm dark:shadow-none">
                 <Form onSubmit={handleEditIdea} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="title">Title</Label>
@@ -85,15 +100,28 @@ const IdeaEditModal = ({ idea, onSaved }) => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="category">Category</Label>
-                    <Input
-                      type="text"
-                      id="category"
-                      name="category"
+                    <Select
                       required
-                      defaultValue={idea?.category}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                    />
+                      name="category"
+                      placeholder="Select Category"
+                      variant="bordered"
+                      color="warning">
+                      <Label>Category</Label>
+                      <Select.Trigger>
+                        <Select.Value />
+                        <Select.Indicator />
+                      </Select.Trigger>
+                      <Select.Popover>
+                        <ListBox>
+                          {categories.map((name, i) => (
+                            <ListBox.Item id={name} key={i} textValue={name}>
+                              {name}
+                              <ListBox.ItemIndicator />
+                            </ListBox.Item>
+                          ))}
+                        </ListBox>
+                      </Select.Popover>
+                    </Select>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="description">Description</Label>

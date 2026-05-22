@@ -6,28 +6,29 @@ import { motion } from "motion/react";
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Button, Dropdown, Label, Separator } from "@heroui/react";
 import { ChevronDown } from "lucide-react";
+import NavLink from "../NavLink";
+import DarkMode from "../DarkMode";
 const NavBar = () => {
   const { data: session } = authClient.useSession();
-  console.log(session);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = (
     <>
       <li>
-        <Link href="/">Home</Link>
+        <NavLink href="/">Home</NavLink>
       </li>
       <li>
-        <Link href="/ideas">Ideas</Link>
+        <NavLink href="/ideas">Ideas</NavLink>
       </li>
       {session && (
         <>
           <li>
-            <Link href="/add-idea">Add Idea</Link>
+            <NavLink href="/add-idea">Add Idea</NavLink>
           </li>
           <li>
-            <Link href="/my-idea">My Ideas</Link>
+            <NavLink href="/my-idea">My Ideas</NavLink>
           </li>
           <li>
-            <Link href="/my-interactions">My Interactions</Link>
+            <NavLink href="/my-interactions">My Interactions</NavLink>
           </li>
         </>
       )}
@@ -47,19 +48,19 @@ const NavBar = () => {
       <div>
         <Link
           href="/register"
-          className="px-6 py-2.5 bg-white text-orange-500 font-semibold rounded-full hover:bg-yellow-300 hover:text-orange-600 transition-all shadow-lg">
+          className="px-6 py-2.5 bg-white text-orange-500 font-semibold rounded-full  hover:bg-yellow-300 hover:text-orange-600 transition-all shadow-lg">
           Sign Up
         </Link>
       </div>
     </div>
   ) : (
     <div className="flex items-center gap-4">
-      <Dropdown className="bg-white" variant="flat">
+      <Dropdown className="bg-white dark:bg-slate-900" variant="flat">
         <Button
           aria-label="Menu"
           variant="outline"
           size="lg"
-          className=" border-2 py-5  shadow-lg  bg-white text-gray-500 hover:bg-white/80">
+          className="border-2 py-5 shadow-lg bg-white dark:bg-slate-800 text-gray-500 dark:text-slate-300 hover:bg-white/80 dark:hover:bg-slate-700">
           <Avatar size="sm">
             <Avatar.Image
               alt={session?.user?.name || "User Avatar"}
@@ -69,23 +70,31 @@ const NavBar = () => {
               {session?.user?.name.charAt(0)}
             </Avatar.Fallback>
           </Avatar>
-          <div className="font-bold">{session?.user?.name}</div>
-          <ChevronDown className="text-gray-500" />
+          <div className="font-bold dark:text-slate-300">
+            {session?.user?.name}
+          </div>
+          <ChevronDown className="text-gray-500 dark:text-slate-300" />
         </Button>
         <Dropdown.Popover>
-          <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-            <Dropdown.Item id="new-file" textValue="New file">
+          <Dropdown.Menu
+            onAction={(key) => console.log(`Selected: ${key}`)}
+            className="dark:bg-slate-800">
+            <Dropdown.Item
+              id="new-file"
+              textValue="New file"
+              className="dark:text-slate-300 dark:hover:bg-slate-700">
               <Link href="/my-profile">
-                <Label>Update Profile</Label>
+                <Label className="dark:text-slate-300">Update Profile</Label>
               </Link>
             </Dropdown.Item>
 
             <Dropdown.Item
               onClick={() => authClient.signOut()}
               id="delete-file"
-              textValue="Delete file"
-              variant="danger">
-              <Label>Logout</Label>
+              textValue="Delete file">
+              <Label className="text-red-500 dark:text-white dark:hover:bg-slate-700">
+                Logout
+              </Label>
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown.Popover>
@@ -94,7 +103,7 @@ const NavBar = () => {
   );
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-separator bg-gradient">
+    <nav className="sticky top-0 z-40 w-full  border-separator bg-gradient ">
       <header className="flex h-16 items-center justify-between px-6 container mx-auto">
         <div className="flex items-center gap-4">
           <button
@@ -130,7 +139,7 @@ const NavBar = () => {
               <motion.div
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
-                className="p-2 rounded-xl bg-white">
+                className="p-2 rounded-xl bg-white ">
                 <LuZap
                   size={28}
                   color="text-orange-500"
@@ -144,19 +153,23 @@ const NavBar = () => {
             </div>
           </Link>
         </div>
-        <ul className="hidden items-center gap-4 md:flex *:px-4 *:py-2 *:text-white *:font-medium *:hover:bg-white/20 *:text-lg *:rounded-lg transition-all">
+        <ul className="hidden items-center gap-4 md:flex  transition-all">
           {links}
         </ul>
-        <div className="hidden md:flex">{LoginButtons}</div>
+        <div className="flex items-center gap-4">
+          <div className="hidden md:flex">{LoginButtons}</div>
+          <DarkMode />
+        </div>
       </header>
       {/* small devices nav */}
       {isMenuOpen && (
         <div className="border-t border-separator md:hidden">
-          <ul className="flex flex-col gap-2 p-4 *:px-4 *:py-2 *:text-white *:font-medium *:hover:bg-white/20 *:text-lg *:rounded-lg transition-all">
-            {links}
-          </ul>
+          <ul className="flex flex-col gap-2 p-4  transition-all">{links}</ul>
           <Separator />
-          <div className="px-4 flex my-3">{LoginButtons}</div>
+          <div className="flex gap-4 items-center">
+            <div className="px-4 flex my-3">{LoginButtons}</div>
+            <DarkMode />
+          </div>
         </div>
       )}
     </nav>

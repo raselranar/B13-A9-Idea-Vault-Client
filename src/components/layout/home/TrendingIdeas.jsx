@@ -13,8 +13,8 @@ const TrendingIdeas = async () => {
 
   return (
     <section className="container mx-auto py-12 px-4">
-      <h1 className="text-5xl text-center">Trending Ideas</h1>
-      <p className="text-gray-500 text-xl mt-2 text-center">
+      <h2 className="text-5xl text-center dark:text-white">Trending Ideas</h2>
+      <p className="text-gray-500 dark:text-slate-300 text-xl mt-2 text-center">
         Explore the most popular and trending startup ideas in our community
       </p>
       {/* cards */}

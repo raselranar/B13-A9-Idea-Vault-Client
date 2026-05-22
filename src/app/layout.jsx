@@ -3,6 +3,7 @@ import "./globals.css";
 import NavBar from "@/components/layout/NavBar";
 import Footer from "@/components/layout/Footer";
 import { Toast } from "@heroui/react";
+import { Providers } from "./providers";
 
 const cabin = Cabin({
   variable: "--font-cabin",
@@ -19,12 +20,15 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-theme="light"
-      className={`${cabin.className} h-full antialiased`}>
+      className={`${cabin.className} h-full antialiased`}
+      suppressHydrationWarning>
       <body className="min-h-full flex flex-col">
-        <NavBar />
-        <main>{children}</main>
-        <Footer />
-        <Toast.Provider placement="top" />
+        <Providers>
+          <NavBar />
+          <main>{children}</main>
+          <Footer />
+          <Toast.Provider placement="top" />
+        </Providers>
       </body>
     </html>
   );
