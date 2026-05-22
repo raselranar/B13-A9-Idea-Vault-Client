@@ -22,7 +22,7 @@
     font-size: 16px;
   }
   h1 {
-    font-size: var(--text-2xl);
+    font-size: text-5xl;
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
   }

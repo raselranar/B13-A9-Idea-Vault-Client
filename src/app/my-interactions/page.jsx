@@ -1,0 +1,134 @@
+import { auth } from "@/lib/auth";
+import { MessageCircle, Calendar, ArrowRight } from "lucide-react";
+import { headers } from "next/headers";
+import Link from "next/link";
+
+// metadata for my interactions page
+export const metadata = {
+  title: "My Interactions - Track Your Engagement with Ideas",
+  description:
+    "View and manage your interactions with ideas. See your comments, track the ideas you've engaged with, and stay connected with the community.",
+};
+
+// fetch commented ideas from server
+const fetchCommentedIdeas = async (name) => {
+  console.log(name);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/commented-ideas/?name=${name}`,
+  );
+  return await res.json();
+};
+
+export default async function MyInteractions() {
+  const session = await auth.api.getSession({ headers: await headers() });
+  console.log(session);
+  const interactions = await fetchCommentedIdeas(session?.user?.name);
+  console.log(interactions);
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-12">
+          <h1 className="text-5xl font-black text-gray-900 mb-4">
+            My Interactions
+          </h1>
+          <p className="text-xl text-gray-600">
+            Track your comments and engagement with ideas
+          </p>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div className="bg-gradient-to-br from-orange-500 to-pink-500 rounded-2xl p-6 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-4xl font-black mb-2">
+                  {interactions.length}
+                </div>
+                <div className="text-lg opacity-90">Total Comments</div>
+              </div>
+              <MessageCircle className="w-16 h-16 opacity-30" />
+            </div>
+          </div>
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl p-6 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-4xl font-black mb-2">
+                  {interactions.length}
+                </div>
+                <div className="text-lg opacity-90">Ideas Engaged</div>
+              </div>
+              <Calendar className="w-16 h-16 opacity-30" />
+            </div>
+          </div>
+        </div>
+
+        {/* Interactions List */}
+        <div className="space-y-6">
+          {interactions.map((interaction, i) => (
+            <div
+              key={interaction?.id || i}
+              className="bg-white rounded-2xl shadow-lg p-6 border-2 border-gray-100 hover:border-orange-500 transition-all">
+              {/* Idea Info */}
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="px-4 py-1.5 bg-gradient text-white rounded-full text-sm font-bold">
+                      {interaction?.category}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-black text-gray-900 mb-1">
+                    {interaction?.title}
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    by {interaction?.author}
+                  </p>
+                </div>
+                <button className="px-4 py-2 bg-gradient text-white rounded-lg font-semibold hover:shadow-lg transition-all flex items-center gap-2">
+                  View Idea
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Comment */}
+              <div className="bg-gray-50 rounded-xl p-4 border-2 border-gray-100">
+                <div className="flex items-start gap-3">
+                  <MessageCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-gray-700 mb-1">
+                      Your Comment:
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      {interaction?.comment}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Empty State */}
+        {interactions.length === 0 && (
+          <div className="text-center py-20">
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-gray-100 rounded-full mb-6">
+              <MessageCircle className="w-12 h-12 text-gray-400" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">
+              No interactions yet
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Start engaging with ideas from the community
+            </p>
+            <Link
+              href="/ideas"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient text-white font-bold rounded-full hover:shadow-xl hover:scale-105 transition-all">
+              Explore Ideas
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

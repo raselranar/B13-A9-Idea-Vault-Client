@@ -19,6 +19,15 @@ const fetchIdea = async (id) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas/${id}`);
   return await res.json();
 };
+// dynamic metadata for idea details page by params
+export const generateMetadata = async ({ params }) => {
+  const { id } = await params;
+  const ideaData = await fetchIdea(id);
+  return {
+    title: `${ideaData?.title} - Idea Details`,
+    description: ideaData?.shortDescription,
+  };
+};
 
 export default async function IdeaDetails({ params }) {
   const { id } = await params;

@@ -54,14 +54,12 @@ const NavBar = () => {
     </div>
   ) : (
     <div className="flex items-center gap-4">
-      <Dropdown
-        className="data-[disabled=true]:bg-transparent disabled:border-gray-200"
-        variant="flat">
+      <Dropdown className="bg-white" variant="flat">
         <Button
           aria-label="Menu"
           variant="outline"
           size="lg"
-          className=" border-2 py-5  shadow-lg  hover:text-yellow-200">
+          className=" border-2 py-5  shadow-lg  bg-white text-gray-500 hover:bg-white/80">
           <Avatar size="sm">
             <Avatar.Image
               alt={session?.user?.name || "User Avatar"}
@@ -71,8 +69,8 @@ const NavBar = () => {
               {session?.user?.name.charAt(0)}
             </Avatar.Fallback>
           </Avatar>
-          <div className="text-yellow-500 font-bold">{session?.user?.name}</div>
-          <ChevronDown className="text-white" />
+          <div className="font-bold">{session?.user?.name}</div>
+          <ChevronDown className="text-gray-500" />
         </Button>
         <Dropdown.Popover>
           <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>

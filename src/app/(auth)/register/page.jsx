@@ -16,7 +16,7 @@ import {
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -142,4 +142,4 @@ const LoginPage = () => {
     </div>
   );
 };
-export default LoginPage;
+export default RegisterPage;
