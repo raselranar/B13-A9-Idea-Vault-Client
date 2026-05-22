@@ -240,7 +240,7 @@ export default function AddIdeaPage() {
             <div className="pt-6">
               <Button
                 type="submit"
-                className="w-full py-6 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white font-bold"
+                className="w-full py-6 rounded-xl bg-gradient text-white font-bold"
                 size="lg">
                 Submit Idea
               </Button>

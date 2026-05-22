@@ -1,3 +1,4 @@
+import ShowUserComments from "@/components/ShowUserComments";
 import { auth } from "@/lib/auth";
 import { MessageCircle, Calendar, ArrowRight } from "lucide-react";
 import { headers } from "next/headers";
@@ -96,10 +97,10 @@ export default async function MyInteractions() {
                   <MessageCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-gray-700 mb-1">
-                      Your Comment:
+                      Your Comments:
                     </p>
                     <p className="text-gray-600 leading-relaxed">
-                      {interaction?.comment}
+                      <ShowUserComments comments={interaction?.comments} />
                     </p>
                   </div>
                 </div>

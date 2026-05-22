@@ -47,7 +47,7 @@ export default async function IdeaDetails({ params }) {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}>
-          <span className="px-4 py-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full text-sm font-bold">
+          <span className="px-4 py-2 bg-gradient text-white rounded-full text-sm font-bold">
             {ideaData?.category}
           </span>
         </div>
