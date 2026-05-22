@@ -7,7 +7,7 @@ const DarkMode = () => {
   const { theme, setTheme } = useTheme("light");
   return (
     <>
-      <Switch defaultSelected size="lg">
+      <Switch size="lg">
         {({ isSelected }) => (
           <>
             <Switch.Control
