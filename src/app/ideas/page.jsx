@@ -1,10 +1,9 @@
-import IdeaCard from "@/components/IdeaCard";
+import IdeasPage from "./IdeasPage";
 
 const fetchIdeas = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/ideas`);
   return await res.json();
 };
-
 // metadata for ideas page
 export const metadata = {
   title: "All Ideas - Explore Innovative Startup Concepts",
@@ -12,30 +11,9 @@ export const metadata = {
     "Discover a wide range of innovative startup ideas across various industries. Browse through our collection of creative concepts and find inspiration for your next venture.",
 };
 
-const IdeasPage = async () => {
+const page = async () => {
   const allIdeas = await fetchIdeas();
-  return (
-    <section className="container mx-auto py-12 px-4 mt-2">
-      <header>
-        <h1 className="text-5xl dark:text-white text-center">All Ideas</h1>
-        <p className="text-gray-500 dark:text-slate-50 text-xl text-center">
-          Browse through thousands of innovative startup ideas
-        </p>
-      </header>
 
-      {/* card container */}
-      <section className="w-fit mx-auto">
-        <div className="text-gray-500 dark:text-slate-50">
-          Showing <span className="font-bold">{allIdeas.length}</span> ideas
-        </div>
-        {/* cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-4 mt-8">
-          {allIdeas.map((idea) => (
-            <IdeaCard key={idea._id} data={idea} />
-          ))}
-        </div>
-      </section>
-    </section>
-  );
+  return <IdeasPage allIdeas={allIdeas} />;
 };
-export default IdeasPage;
+export default page;

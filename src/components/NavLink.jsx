@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 const NavLink = ({ href, children }) => {
   const { data: session } = authClient.useSession();
   const pathname = usePathname();
-  console.log(session);
   const activeStyle = "w-full bg-white/50 font-bold";
   const isActive = href === pathname;
   const combinedClassName = isActive ? activeStyle : "";
