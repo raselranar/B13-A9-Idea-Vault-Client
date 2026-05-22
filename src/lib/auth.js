@@ -7,6 +7,9 @@ const client = new MongoClient(process.env.MONGO_DB_URI);
 const db = client.db("IDEAVAULT");
 
 export const auth = betterAuth({
+  advanced: {
+    disablePrivateKeyEncryption: true, //
+  },
   baseURL: process.env.BETTER_AUTH_URL,
   database: mongodbAdapter(db, {
     // Optional: if you don't provide a client, database transactions won't be enabled.

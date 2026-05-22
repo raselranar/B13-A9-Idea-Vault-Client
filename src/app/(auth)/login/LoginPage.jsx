@@ -22,7 +22,7 @@ const LoginPage = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    // Convert FormData to plain object
+    // Convert FormData tfo plain object
     const userData = Object.fromEntries(formData.entries());
     const { data, error } = await authClient.signIn.email({
       ...userData,
