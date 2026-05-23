@@ -13,11 +13,10 @@ import {
   TextField,
   toast,
 } from "@heroui/react";
+import { redirect } from "next/dist/server/api-utils";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
-  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -31,7 +30,7 @@ const RegisterPage = () => {
     if (error) return toast.danger(error.message);
 
     toast.success("Registration Successful");
-    router.back();
+    redirect("/login");
     console.log(data, error);
   };
   return (
