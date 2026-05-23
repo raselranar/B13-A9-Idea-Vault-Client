@@ -13,8 +13,8 @@ import {
   TextField,
   toast,
 } from "@heroui/react";
-import { redirect } from "next/dist/server/api-utils";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const RegisterPage = () => {
   const onSubmit = async (e) => {

@@ -6,10 +6,10 @@ import { motion } from "motion/react";
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Button, Dropdown, Label, Separator } from "@heroui/react";
 import { ChevronDown } from "lucide-react";
-import NavLink from "../NavLink";
-import DarkMode from "../DarkMode";
-const NavBar = () => {
-  const { data: session } = authClient.useSession();
+import NavLink from "./NavLink";
+import DarkMode from "./DarkMode";
+const NavBarClient = ({ session }) => {
+  console.log(session);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = (
     <>
@@ -173,4 +173,4 @@ const NavBar = () => {
     </nav>
   );
 };
-export default NavBar;
+export default NavBarClient;

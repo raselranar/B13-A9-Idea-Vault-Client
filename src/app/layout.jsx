@@ -1,9 +1,10 @@
 import { Cabin } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/layout/NavBar";
+import NavBar from "@/components/NavBarClient";
 import Footer from "@/components/layout/Footer";
 import { Toast } from "@heroui/react";
 import { Providers } from "./providers";
+import NavBarServer from "@/components/layout/NavBarServer";
 
 const cabin = Cabin({
   variable: "--font-cabin",
@@ -24,7 +25,7 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning>
       <body className="min-h-full flex flex-col">
         <Providers>
-          <NavBar />
+          <NavBarServer />
           <main>{children}</main>
           <Footer />
           <Toast.Provider placement="top" />
