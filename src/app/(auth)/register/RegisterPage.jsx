@@ -74,8 +74,7 @@ const RegisterPage = () => {
             }}>
             <Label className="text-base">Email</Label>
             <Input
-              className="bg-accent dark:bg-[#25324C]"
-              style={{ backgroundColor: "white" }}
+              className="dark:bg-[#25324C]"
               placeholder="john@example.com"
             />
             <FieldError />
@@ -109,7 +108,10 @@ const RegisterPage = () => {
               return null;
             }}>
             <Label className="text-base">Password</Label>
-            <Input placeholder="Enter your password" />
+            <Input
+              placeholder="Enter your password"
+              className="dark:bg-[#25324C]"
+            />
             <Description>
               Must be at least 8 characters with 1 uppercase and 1 number
             </Description>
