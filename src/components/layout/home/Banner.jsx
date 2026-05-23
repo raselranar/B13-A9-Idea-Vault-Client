@@ -95,7 +95,7 @@ export default function Banner() {
               </motion.div>
 
               <motion.h1
-                className="text-5xl md:text-6xl font-black leading-tight"
+                className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}>

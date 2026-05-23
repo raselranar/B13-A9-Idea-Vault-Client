@@ -14,9 +14,10 @@ import {
   toast,
 } from "@heroui/react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
+  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -26,24 +27,23 @@ const RegisterPage = () => {
 
     const { data, error } = await authClient.signUp.email({
       ...userData,
-      callbackURL: "/login",
     });
     if (error) return toast.danger(error.message);
 
     toast.success("Registration Successful");
-    redirect("/login");
+    router.back();
     console.log(data, error);
   };
   return (
-    <div className="bg-background dark:bg-slate-900 flex items-center justify-center py-12">
+    <div className="bg-background px-4 dark:bg-slate-900 flex items-center justify-center py-12">
       <div className="outline-1 outline-gray-300 dark:outline-slate-700 rounded-2xl p-8 shadow-xl">
-        <h1 className="text-5xl font-black text-center dark:text-white">
+        <h1 className="text-4xl sm:text-5xl font-black text-center dark:text-white">
           Join IdeaVault
         </h1>
         <p className="text-center mt-4 text-gray-500 dark:text-slate-300 text-lg">
           Start sharing your innovative ideas today
         </p>
-        <Form className="flex w-96 flex-col gap-4 mt-6" onSubmit={onSubmit}>
+        <Form className="flex flex-col gap-4 mt-6" onSubmit={onSubmit}>
           {/* Name */}
           <TextField
             isRequired

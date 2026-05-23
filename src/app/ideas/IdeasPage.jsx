@@ -52,7 +52,9 @@ const IdeasPage = ({ allIdeas }) => {
   return (
     <section className="container mx-auto py-12 px-4 mt-2">
       <header>
-        <h1 className="text-5xl dark:text-white text-center">All Ideas</h1>
+        <h1 className="text-4xl sm:text-5xl dark:text-white text-center">
+          All Ideas
+        </h1>
         <p className="text-gray-500 mt-2 dark:text-slate-50 text-xl text-center">
           Browse through thousands of innovative startup ideas
         </p>

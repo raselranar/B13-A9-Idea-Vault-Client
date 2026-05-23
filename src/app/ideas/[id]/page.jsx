@@ -48,7 +48,7 @@ export default async function IdeaDetails({ params }) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 py-12">
       <div
-        className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="container mx-auto px-4 sm:px-6 lg:px-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}>
@@ -65,7 +65,7 @@ export default async function IdeaDetails({ params }) {
 
         {/* Title */}
         <h1
-          className="text-5xl dark:text-white dark:text-slate-50 font-black text-gray-900 mb-6"
+          className="text-4xl sm:text-5xl dark:text-white dark:text-slate-50 font-black text-gray-900 mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}>
@@ -75,7 +75,7 @@ export default async function IdeaDetails({ params }) {
         {/* Meta Info */}
         <div className="flex flex-wrap items-center gap-6 mb-8 text-gray-600 dark:text-slate-300">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
+            <div className="w-10 h-10 bg-gradient rounded-full flex items-center justify-center text-white font-bold">
               {ideaData?.authorPhoto}
             </div>
             <span className="font-semibold">{ideaData?.author}</span>
@@ -110,7 +110,7 @@ export default async function IdeaDetails({ params }) {
           </div>
 
           {/* Content */}
-          <div className="p-8 space-y-8">
+          <div className="py-8 px-3 sm:p-8 space-y-8">
             {/* Short Description */}
             <div>
               <h2 className="text-2xl font-black text-gray-900 dark:text-slate-50 mb-3">

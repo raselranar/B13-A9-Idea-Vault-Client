@@ -33,7 +33,7 @@ export default async function MyInteractions() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-5xl dark:text-white dark:text-slate-50 font-black text-gray-900 mb-4">
+          <h1 className="text-4xl sm:text-5xl dark:text-white dark:text-slate-50 font-black text-gray-900 mb-4">
             My Interactions
           </h1>
           <p className="text-xl text-gray-600 dark:text-slate-300">

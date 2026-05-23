@@ -164,11 +164,9 @@ const NavBar = () => {
       {/* small devices nav */}
       {isMenuOpen && (
         <div className="border-t border-separator md:hidden">
-          <ul className="flex flex-col gap-2 p-4  transition-all">{links}</ul>
-          <Separator />
-          <div className="flex gap-4 items-center">
-            <div className="px-4 flex my-3">{LoginButtons}</div>
-            <DarkMode />
+          <ul className="flex flex-col gap-4 p-4  transition-all">{links}</ul>
+          <div className="flex items-center">
+            <div className="p-4 flex my-3">{LoginButtons}</div>
           </div>
         </div>
       )}

@@ -61,7 +61,7 @@ const IdeaComments = ({ comments, id }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-orange-100 dark:border-slate-700 p-8">
+    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-2 border-orange-100 dark:border-slate-700 py-8 px-3 sm:p-8">
       <h2 className="text-3xl font-black text-gray-900 dark:text-slate-50 mb-6 flex items-center gap-3">
         <MessageCircle className="w-8 h-8 text-orange-500" />
         Comments ({comments?.length || 0})

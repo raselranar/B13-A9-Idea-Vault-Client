@@ -83,7 +83,7 @@ export default function AddIdeaPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl dark:text-white dark:text-slate-50 font-black text-gray-900 mb-4">
+          <h1 className="text-4xl sm:text-5xl dark:text-white dark:text-slate-50 font-black text-gray-900 mb-4">
             Share Your Idea
           </h1>
           <p className="text-xl text-gray-600 dark:text-slate-300">
@@ -92,7 +92,7 @@ export default function AddIdeaPage() {
         </div>
 
         {/* Form Card */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-8 border-2 border-orange-100 dark:border-slate-700">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-4 sm:p-8 border-2 border-orange-100 dark:border-slate-700">
           <Form className="space-y-6 flex flex-col" onSubmit={handleAddIdea}>
             {/* Idea Title */}
             <TextField isRequired name="title">

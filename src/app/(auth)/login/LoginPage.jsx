@@ -34,16 +34,16 @@ const LoginPage = () => {
     router.back();
   };
   return (
-    <div className="bg-background dark:bg-slate-900 flex items-center justify-center py-12">
+    <div className="bg-background px-4 dark:bg-slate-900 flex items-center justify-center py-12">
       <div className="outline-1 outline-gray-300 dark:outline-slate-700 rounded-2xl p-8 shadow-xl">
-        <h1 className="text-5xl font-black text-center dark:text-white ">
+        <h1 className="text-4xl sm:text-5xl font-black text-center dark:text-white ">
           Welcome Back!
         </h1>
         <p className="text-center text-gray-500 dark:text-slate-300 text-lg">
           Login to continue your innovation journey
         </p>
         <Form
-          className="flex w-96 flex-col gap-4 mt-6 rounded-2xl"
+          className="flex flex-col gap-4 mt-6 rounded-2xl"
           onSubmit={onSubmit}>
           {/* Email */}
           <TextField
