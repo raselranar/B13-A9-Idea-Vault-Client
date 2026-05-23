@@ -9,7 +9,6 @@ import { ChevronDown } from "lucide-react";
 import NavLink from "./NavLink";
 import DarkMode from "./DarkMode";
 const NavBarClient = ({ session }) => {
-  console.log(session);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = (
     <>
@@ -89,7 +88,11 @@ const NavBarClient = ({ session }) => {
             </Dropdown.Item>
 
             <Dropdown.Item
-              onClick={() => authClient.signOut()}
+              onClick={async () => {
+                // refresh the page after logout
+                await authClient.signOut();
+                window.location.href = "/login";
+              }}
               id="delete-file"
               textValue="Delete file">
               <Label className="text-red-500 dark:text-white dark:hover:bg-slate-700">

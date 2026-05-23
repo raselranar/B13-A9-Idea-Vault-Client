@@ -31,7 +31,7 @@ const LoginPage = () => {
     if (error) return toast.danger(error.message);
 
     toast.success("Login Successful");
-    router.back();
+    router.back() || router.push("/");
   };
   return (
     <div className="bg-background px-4 dark:bg-slate-900 flex items-center justify-center py-12">
