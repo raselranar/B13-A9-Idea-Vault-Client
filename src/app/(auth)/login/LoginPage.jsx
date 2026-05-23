@@ -121,7 +121,7 @@ const LoginPage = () => {
           <div className="text-gray-500 dark:text-slate-300 mt-4 text-center">
             Already have an account?{" "}
             <Link href="/register">
-              <span className="text-orange-700">Sign in </span>
+              <span className="text-orange-700">Sign up </span>
             </Link>
           </div>
         </Form>
