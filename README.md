@@ -4,6 +4,7 @@ Welcome to **IdeaVault**\! This is a web-based platform where creative minds can
 
 - **Live Site URL:** [_https://b13-a9-idea-vault-server-3r1n.vercel.app/_](https://b13-a9-idea-vault-server-3r1n.vercel.app/)
 - **Client Repository:** [https://github.com/raselranar/B13-A9-Idea-Vault-Client](https://github.com/raselranar/B13-A9-Idea-Vault-Client)
+- **Server Repository:** [https://github.com/raselranar/B13-A9-Idea-Vault-Server](https://github.com/raselranar/B13-A9-Idea-Vault-Server)
 
 ## **🚀 Key Features**
 
