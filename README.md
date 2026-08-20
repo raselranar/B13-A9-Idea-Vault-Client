@@ -2,9 +2,9 @@
 
 Welcome to **IdeaVault**\! This is a web-based platform where creative minds can share innovative startup ideas, explore concepts posted by others, and collaborate through feedback and active discussions. Instead of scheduling or booking, this platform focuses entirely on idea validation and gathering helpful community feedback.
 
-- **Live Site URL:** [_https://b13-a9-idea-vault-server-3r1n.vercel.app/_](https://b13-a9-idea-vault-server-3r1n.vercel.app/)
-- **Client Repository:** [https://github.com/raselranar/B13-A9-Idea-Vault-Client](https://github.com/raselranar/B13-A9-Idea-Vault-Client)
-- **Server Repository:** [https://github.com/raselranar/B13-A9-Idea-Vault-Server](https://github.com/raselranar/B13-A9-Idea-Vault-Server)
+- **Live Site URL:** https://idea-vault-server-3r1n.vercel.app
+- **Client Repository:** https://github.com/raselranar/Idea-Vault-Client
+- **Server Repository:** https://github.com/raselranar/Idea-Vault-Server
 
 ## **🚀 Key Features**
 
